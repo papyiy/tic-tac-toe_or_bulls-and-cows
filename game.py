@@ -1,7 +1,5 @@
 import random
-
 # def main():
-
 
 def bullscows():
     bc_intro()
@@ -12,8 +10,6 @@ def bullscows():
         if bc_incorrect_guess(user_guess) == False:
             continue
         bc_evaluate(our_number, user_guess)
-
-
 
 def bc_intro():
     """Introduction for user"""
@@ -39,21 +35,31 @@ def bc_incorrect_guess(value):
 def bc_evaluate(number, guess):
     bulls = 0
     cows = 0
+    number_image = list(str(number))
+    guess_image = list(str(guess))
     number = list(str(number))
-    unsolved = list(range(0,len(guess)))
+    # unsolved = list(range(0,len(guess)))
     # unsolved = number
 
     for index,digit in enumerate(guess):
         if digit == number[index]:
             bulls += 1
-            unsolved.remove(index)
+            # unsolved.remove(index)
+            number_image.remove(digit)
+            guess_image.remove(digit)
 
-    for pos in unsolved:
-        if guess[pos] in number:
+    print(bulls, cows, number_image, guess_image)
+    # for nmb in image:
+    #     if nmb in guess:
+    #         cows += 1
+    #         image.remove(nmb)
+
+    for digit in reversed(number_image):
+        if digit in guess_image:
             cows += 1
+            number_image.remove(digit)
+            guess_image.remove(digit)
 
-    print(bulls, cows, unsolved)
-
-
+    print(bulls, cows, number_image, guess_image)
 
 bullscows()
