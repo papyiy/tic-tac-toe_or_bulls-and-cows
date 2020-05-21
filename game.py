@@ -2,14 +2,14 @@ import random, time
 
 '''Author = Jan Papousek'''
 
-def choose_game():
-    game = input("Please choose game - either Bulls&Cows or Tic-Tac-Toe. Please write 'BC' or 'TTT' to start: ")
+def main():
+    game = input("Choose game - either Bulls&Cows or Tic-Tac-Toe. Please write 'BC' or 'TTT' to start: ")
 
     if game.upper() == 'BC':
-        print("\n", 25 * "=")
+        print("\n")
         bullscows_main()
     elif game.upper() =='TTT':
-        print("\n", 25 * "=")
+        print("\n")
         tictactoe_main()
     else:
         print(f"Your input {game} is not valid.")
@@ -206,4 +206,4 @@ def bc_time(start):
     return f"{minutes} minutes and {seconds} seconds"
 
 
-choose_game()
+main()
