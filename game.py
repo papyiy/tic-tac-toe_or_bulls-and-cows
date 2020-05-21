@@ -1,15 +1,52 @@
 def tictactoe_main():
     ttt_intro()
+    ttt_start_game_field()
+    move = 0
+
+    while True:
+        move, player = ttt_player_moves(move)
+        ttt_take_move(move, player)
+
 
 def ttt_intro():
     """Introduction for user"""
-    print("Welcome to Bulls&Cows game.",
-          "For rules use this link: https://en.wikipedia.org/wiki/Bulls_and_Cows",
-          "I've generated 4 secret numbers for you.",
-          sep="\n")
+    print("Welcome to TicTacToe game.",
+          "For rules use this link: https://en.wikipedia.org/wiki/Tic-tac-toe",
+          "Let's begin!",
+          sep="\n",
+          end="\n\n")
 
+def ttt_start_game_field():
+    print(6 * "-")
+    i = 1
+    while i < 10:
+        print(f"{i}",f"{i+1}",f"{i+2}", sep="|")
+        print(6 * "-")
+        i += 3
+    print(25 * "=")
 
-ttt_main()
+def ttt_player_moves(move = 0):
+    move += 1
+
+    if move % 2 != 0:
+        player = "o"
+    else:
+        player = "x"
+
+    return move, player
+
+def ttt_take_move(move, player):
+    while True:
+        player_choice = input(f"Round {move} - Player {player} use number [1-9] to determine your move: ")
+        try:
+            if not int(player_choice) in range(1,9):
+                print(f"Your value {player_choice} is incorrect. Resetting round...")
+            else:
+                break
+        except ValueError:
+            print(f"Your value {player_choice} is incorrect. Resetting round...")
+
+tictactoe_main()
 
 # import random, time
 # '''Author = Jan Papousek'''
