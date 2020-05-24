@@ -6,14 +6,14 @@ def main():
     game = input("Choose game - either Bulls&Cows or Tic-Tac-Toe. Please write 'BC' or 'TTT' to start: ")
 
     if game.upper() == 'BC':
-        print("\n")
+        print("STARTING BULLS&COWS...\n")
         bullscows_main()
     elif game.upper() =='TTT':
-        print("\n")
+        print("STARTING TIC-TAC-TOE...\n")
         tictactoe_main()
     else:
-        print(f"Your input {game} is not valid.")
-        choose_game()
+        print(f"Your input {game} is not valid. RESETING...\n")
+        main()
 
 
 def tictactoe_main():
@@ -98,20 +98,16 @@ def ttt_print_field(field):
 def ttt_evaluate(f, player):
     result = True
     check = {index for index, value in enumerate(f) if value==player}
-    print(check)
     i, j = 0, 0
 
     while j <= 2:
         if set(range(i, i+3)) <= check or set(range(j, j+7, 3)) <= check:
             result = False
-        print(i, j)
-        print(result)
         i += 3
         j += 1
 
     if set(range(0,9,4)) <= check or set(range(2, 7, 2)) <= check:
         result = False
-    print(result)
     return result
 
 
