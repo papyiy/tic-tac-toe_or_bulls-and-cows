@@ -135,7 +135,7 @@ def bullscows_main():
         bc_output(cows, bulls)
         if bulls == 4:
             end = bc_time(start)
-            print(f"Great job. It took you {counter} tries in {end}")
+            print(f"Great job, it really was {our_number}. It took you {counter} tries in {end}")
             break
 
 
