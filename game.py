@@ -29,7 +29,7 @@ def tictactoe_main():
         check = ttt_full_field(game_field)
         if check == False:
             print(f"It's a draw. ENDING GAME...")
-            exit()
+            break
         result = ttt_evaluate(game_field, player)
 
         if result == False:
@@ -91,8 +91,6 @@ def ttt_adjust_field(choice, player, field):
 def ttt_full_field(f):
     if " " not in f:
         return False
-    else:
-        return True
 
 def ttt_print_field(field):
     print(6 * "-")
