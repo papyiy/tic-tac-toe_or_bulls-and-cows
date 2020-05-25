@@ -19,7 +19,7 @@ def main():
 def tictactoe_main():
     ttt_intro()
     game_field = ttt_start_game_field()
-    counter = 0
+    counter = 0     # counting turns
 
     while True:
         counter, player = ttt_player_moves(counter)
@@ -28,17 +28,16 @@ def tictactoe_main():
         ttt_print_field(game_field)
         check = ttt_full_field(game_field)
         if check == False:
-            print(f"It's a draw. ENDING GAME...")
+            print(f"It's a draw. ENDING GAME...")   # game field is full
             break
         result = ttt_evaluate(game_field, player)
 
         if result == False:
-            print(f"Congratulations Player {player} you won in {counter} turns.")
+            print(f"Congratulations Player {player} you won in {counter} turns.")       # one of players wins
             break
 
 
 def ttt_intro():
-    """Introduction for user"""
     print("Welcome to TicTacToe game.",
           "For rules use this link: https://en.wikipedia.org/wiki/Tic-tac-toe",
           "Let's begin!",
@@ -47,6 +46,7 @@ def ttt_intro():
 
 
 def ttt_start_game_field():
+    # print game field with position numbers
     print(6 * "-")
     i = 1
     while i < 10:
@@ -59,6 +59,7 @@ def ttt_start_game_field():
 
 
 def ttt_player_moves(move):
+    #count turns and evaulate which player plays this turn
     move += 1
 
     if move % 2 != 0:
@@ -70,6 +71,7 @@ def ttt_player_moves(move):
 
 
 def ttt_take_move(move, player, field):
+    # player chooses his move
     free_fields = [index+1 for index, value in enumerate(field) if value==" "]
     while True:
         player_choice = input(f"Round {move} - Player {player} use number [1-9] to determine your move: ")
@@ -83,6 +85,7 @@ def ttt_take_move(move, player, field):
 
 
 def ttt_adjust_field(choice, player, field):
+    # player's move is written into game field
     del field[int(choice) - 1]
     field.insert(int(choice) - 1, player)
 
@@ -103,6 +106,7 @@ def ttt_print_field(field):
 
 
 def ttt_evaluate(f, player):
+    # determine if a player has won or not
     result = True
     check = {index for index, value in enumerate(f) if value==player}
     i, j = 0, 0
@@ -110,10 +114,10 @@ def ttt_evaluate(f, player):
     while j <= 2:
         if set(range(i, i+3)) <= check or set(range(j, j+7, 3)) <= check:
             result = False
-        i += 3
-        j += 1
+        i += 3 # horizontal lines
+        j += 1 # vertical lines
 
-    if set(range(0,9,4)) <= check or set(range(2, 7, 2)) <= check:
+    if set(range(0,9,4)) <= check or set(range(2, 7, 2)) <= check: # diagonals
         result = False
     return result
 
@@ -123,8 +127,8 @@ def ttt_evaluate(f, player):
 def bullscows_main():
     bc_intro()
     our_number = bc_generate_number()
-    counter = 0
-    start = 0
+    counter = 0 # counting rounds
+    start = 0 # counting time
     while True:
         user_guess, counter, start = bc_take_guess(counter, start)
         if bc_incorrect_guess(user_guess) == False:
@@ -138,7 +142,6 @@ def bullscows_main():
 
 
 def bc_intro():
-    """Introduction for user"""
     print("Welcome to Bulls&Cows game.",
           "For rules use this link: https://en.wikipedia.org/wiki/Bulls_and_Cows",
           "I've generated 4 secret digits for you.",
@@ -157,6 +160,7 @@ def bc_take_guess(counter, start_time):
 
 
 def bc_incorrect_guess(value):
+    # check if user input is valid
     if not value.isdigit():
         print(f"ERROR: Your guess is not a number. You must enter a 4-digit integer.")
         return False
@@ -169,8 +173,8 @@ def bc_incorrect_guess(value):
 def bc_evaluate(number, guess):
     bulls = 0
     cows = 0
-    number_image = list(str(number))
-    guess_image = list(str(guess))
+    number_image = list(str(number)) # image of our generated number
+    guess_image = list(str(guess)) # image of user input
     number = list(str(number))
 
     for index,digit in enumerate(guess):
